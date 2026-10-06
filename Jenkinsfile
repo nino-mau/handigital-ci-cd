@@ -1,6 +1,10 @@
 pipeline {
   agent any
   tools { nodejs 'node22' }
+  environment {
+    NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+    NETLIFY_SITE_ID = credentials('netlify-site')
+  }
   triggers { pollSCM('H/2 * * * *') }
   stages {
     stage('Installer') { steps { sh 'env SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm ci' } }
@@ -9,6 +13,11 @@ pipeline {
       steps {
         sh 'npm run build'
         archiveArtifacts 'dist/**'
+      }
+    }
+    stage('Déployer') {
+      steps {
+        sh 'npm run deploy'
       }
     }
   }
