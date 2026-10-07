@@ -1,4 +1,9 @@
-import { ajouterTache, compterTaches, supprimerTache } from "./taches.js";
+import {
+	ajouterTache,
+	compterTaches,
+	supprimerTache,
+	terminerTache,
+} from "./taches.js";
 
 // La liste des tâches. Elle est vide au chargement de la page.
 let taches = [];
@@ -17,7 +22,17 @@ function afficher() {
 
 		const texte = document.createElement("span");
 		texte.textContent = tache.titre;
+		if (tache.terminee) texte.classList.add("terminee");
 		ligne.appendChild(texte);
+
+		const boutonTerminer = document.createElement("button");
+		boutonTerminer.textContent = tache.terminee ? "Terminée" : "Terminer";
+		boutonTerminer.disabled = tache.terminee;
+		boutonTerminer.addEventListener("click", () => {
+			taches = terminerTache(taches, tache.titre);
+			afficher();
+		});
+		ligne.appendChild(boutonTerminer);
 
 		const boutonSupprimer = document.createElement("button");
 		boutonSupprimer.textContent = "Supprimer";

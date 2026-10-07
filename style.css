@@ -44,8 +44,22 @@ ul {
 
 li {
 	display: flex;
-	justify-content: space-between;
+	gap: 8px;
 	align-items: center;
 	padding: 8px 0;
 	border-bottom: 1px solid #dddddd;
+}
+
+li span {
+	flex: 1;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.terminee {
+	text-decoration: line-through;
+}
+
+button:disabled {
+	cursor: default;
 }

@@ -12,6 +12,13 @@ export function supprimerTache(liste, titre) {
 	return liste.filter((tache) => tache.titre !== titre);
 }
 
+// Renvoie une nouvelle liste, avec la tâche qui porte ce titre terminée.
+export function terminerTache(liste, titre) {
+	return liste.map((tache) =>
+		tache.titre === titre ? { ...tache, terminee: true } : tache,
+	);
+}
+
 export function compterTaches(liste) {
 	return liste.length;
 }
