@@ -9,7 +9,7 @@ export function ajouterTache(liste, titre) {
 
 // Renvoie une nouvelle liste, sans la tâche qui porte ce titre.
 export function supprimerTache(liste, titre) {
-	return liste.filter((tache) => tache.titre !== titre);
+	return liste.filter((tache) => tache.titre);
 }
 
 // Renvoie une nouvelle liste, avec la tâche qui porte ce titre terminée.
